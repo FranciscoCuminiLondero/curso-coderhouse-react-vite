@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import NavBar from "./components/NavBar/NavBar";
+import Counter from "./components/Counter/Counter";
 
 function App() {
-
   return (
     <>
-      <h1>Hola mundo!</h1>
+      <NavBar />
+      <Counter />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
