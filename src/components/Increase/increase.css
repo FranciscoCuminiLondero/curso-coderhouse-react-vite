@@ -1,0 +1,7 @@
+.increaseBtn {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: brown;
+    color: white;
+}

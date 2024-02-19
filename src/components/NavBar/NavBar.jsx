@@ -1,10 +1,10 @@
 import "./navBar.css";
 import CartWidget from "../CartWidget/CartWidget";
 
-const NavBar = () => {
+const NavBar = ({ greeting }) => {
   return (
     <div className="navBar">
-      <h1>Navbar</h1>
+      <h1>{greeting}</h1>
       <CartWidget number={0} />
     </div>
   );

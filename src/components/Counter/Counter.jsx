@@ -1,9 +1,18 @@
 import "./counter.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Counter = () => {
   // useState → Para modificar el número del contador
   const [value, setValue] = useState(0);
+
+  // useEffect → Controla efectos secundarios cuando algo cambia
+  useEffect(() => {
+    console.log('MONTAJE')
+    console.log(`El componente se ACTUALIZÓ a ${value}`);
+    return () => {
+      console.log('Se DESMONTÓ el componente')
+    }
+  }, [value]);
 
   // function para adicionar 1
   const add = () => {

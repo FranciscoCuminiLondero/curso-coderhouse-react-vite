@@ -2,18 +2,13 @@ import "./cartWidget.css";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const CartWidget = ({ number }) => {
-  const handleClick = (event) => {
-    console.log(event);
+  const handleClick = () => {
+    alert("¡Todavía no funciona!");
   };
 
   return (
     <div className="cartContainer">
-      <ShoppingCartIcon
-        className="cartIcon"
-        onClick={(event) => {
-          handleClick(event);
-        }}
-      />
+      <ShoppingCartIcon className="cartIcon" onClick={handleClick} />
       <span className="cartNumber">{number}</span>
     </div>
   );
