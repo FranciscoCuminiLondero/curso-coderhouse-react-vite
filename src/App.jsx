@@ -1,21 +1,23 @@
 import NavBar from "./components/NavBar/NavBar";
-import Counter from "./components/Counter/Counter";
-import Increase from "./components/Increase/Increase";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const greeting = "Bienvenidos a mi Web";
   return (
     <>
-      <NavBar greeting={greeting} />
-      <Counter />
-      <Increase>
-        <ArrowUpwardIcon
-          onClick={() => {
-            alert("Es para subir al inicio");
-          }}
+      <NavBar />
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={<ItemListContainer greeting={greeting} />}
         />
-      </Increase>
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+        <Route path="*" element={<div>ERROR: 404. La página no existe</div>} />
+      </Routes>
     </>
   );
 }

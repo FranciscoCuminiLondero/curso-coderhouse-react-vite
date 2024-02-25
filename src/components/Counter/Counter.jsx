@@ -1,28 +1,9 @@
 import "./counter.css";
-import { useEffect, useState } from "react";
+import { useCount } from "../customHooks/useCount";
 
 const Counter = () => {
-  // useState → Para modificar el número del contador
-  const [value, setValue] = useState(0);
-
-  // useEffect → Controla efectos secundarios cuando algo cambia
-  useEffect(() => {
-    console.log('MONTAJE')
-    console.log(`El componente se ACTUALIZÓ a ${value}`);
-    return () => {
-      console.log('Se DESMONTÓ el componente')
-    }
-  }, [value]);
-
-  // function para adicionar 1
-  const add = () => {
-    setValue(value + 1);
-  };
-
-  // function para sustraer 1
-  const substract = () => {
-    setValue(value - 1);
-  };
+  //Pasar el último parametro de useCount, como el stock del Item
+  const { add, substract, value } = useCount(0, 0, 10);
 
   return (
     <div className="counterContainer">
