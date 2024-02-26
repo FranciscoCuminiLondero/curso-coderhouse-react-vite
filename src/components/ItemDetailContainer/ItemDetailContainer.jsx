@@ -1,9 +1,9 @@
 import "./itemDetailContainer.css";
 import { getProductsById } from "../../serveMock/productMock";
 import { useEffect, useState } from "react";
-import Item from "../Item/Item";
 import { useParams } from "react-router-dom";
 import Spinner from "../commons/Spinner/Spinner";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
@@ -22,7 +22,7 @@ const ItemDetailContainer = () => {
 
   return (
     <div className="containerItemDetail">
-      {productDetail && <Item {...productDetail} />}
+      {productDetail && <ItemDetail {...productDetail} />}
     </div>
   );
 };
