@@ -9,11 +9,17 @@ function Counter({ onAdd, stock }) {
   return (
     <>
       <div className="counterContainer">
-        <button onClick={substract}>-</button>
+        <button disabled={value === 0} onClick={substract}>
+          -
+        </button>
         <p>{value}</p>
-        <button onClick={add}>+</button>
+        <button disabled={value === stock} onClick={add}>
+          +
+        </button>
       </div>
-      <Button handleClick={() => onAdd(value)}>Agregar al carrito</Button>
+      <Button disabled={value === 0} handleClick={() => onAdd(value)}>
+        Agregar al carrito
+      </Button>
     </>
   );
 }
