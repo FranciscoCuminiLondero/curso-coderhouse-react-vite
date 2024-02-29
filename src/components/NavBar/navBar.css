@@ -1,3 +1,23 @@
-.active {
+.navBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBarList {
+    display: flex;
+    list-style-type: none;
+}
+
+.navBarList li {
+    padding-inline: 20px;
+}
+
+.navBarList li .active {
     color: red;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
 }

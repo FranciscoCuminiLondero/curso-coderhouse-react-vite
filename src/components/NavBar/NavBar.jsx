@@ -1,14 +1,16 @@
 import "./navBar.css";
+import { useState, useEffect } from "react";
+import { collection, getFirestore, getDocs } from "firebase/firestore";
 import CartWidget from "../CartWidget/CartWidget";
 import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <div className="navBar">
+    <div className="navBarContainer">
       <Link to={"/"}>
         <h1>E-commerce</h1>
       </Link>
-      <ul>
+      <ul className="navBarList">
         <li>
           <NavLink to="/category/electronica">Electrónica</NavLink>
         </li>

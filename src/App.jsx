@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import Cart from "./components/Cart/Cart";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
           element={<ItemListContainer greeting={greeting} />}
         />
         <Route path="/category/:categoryId" element={<ItemListContainer />} />
-        <Route path="/item/:itemId" element={<ItemDetailContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+        <Route path="/cart/" element={<Cart />} />
         <Route path="*" element={<div>ERROR: 404. La página no existe</div>} />
       </Routes>
     </>

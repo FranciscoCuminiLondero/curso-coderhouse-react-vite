@@ -7,6 +7,7 @@ import {
 import { useParams } from "react-router-dom";
 import Spinner from "../commons/Spinner/Spinner";
 import ItemList from "../ItemList/ItemList";
+import { collection, getDoc, getDocs, getFirestore } from "firebase/firestore";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
@@ -14,26 +15,18 @@ const ItemListContainer = ({ greeting }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const asyncFunction = categoryId ? getProductsByCategory : getProducts;
-      setIsLoading(true);
-
-      try {
-        const response = await asyncFunction(categoryId);
-        setItems(response);
-        setIsLoading(false);
-      } catch (reject) {
-        console.log(reject.menssage);
-        setIsLoading(false);
-      }
-    };
-    fetchProducts();
-  }, [categoryId, setIsLoading]);
+    const db = getFirestore();
+    const itemsCollection = collection(db, "chocolates");
+    getDocs(itemsCollection).then((snapshot) => {
+      const docs = snapshot.docs.map((doc) => doc.data());
+      setItems(docs);
+    });
+  }, []);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
 
   return (
-    <div className="itemListContainer">
+    <div>
       <h2 className="title">{greeting}</h2>
       <ItemList items={items} />
     </div>

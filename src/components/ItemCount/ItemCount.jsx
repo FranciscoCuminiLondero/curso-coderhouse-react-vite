@@ -2,9 +2,8 @@ import "./itemCount.css";
 import { useCount } from "../customHooks/useCount";
 import Button from "../commons/Button/Button";
 
-function Counter({ onAdd, stock }) {
-  //Pasar el último parametro de useCount, como el stock del Item
-  const { add, substract, value } = useCount(0, 0, stock);
+function Counter({ initial, onAdd, stock }) {
+  const { add, substract, value } = useCount(initial, 0, stock);
 
   return (
     <>

@@ -3,18 +3,18 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartContext from "../../context/CartContext";
 import { useContext } from "react";
 import { sumQuantities } from "../utils/sumQuantitiesCart";
+import { Link } from "react-router-dom";
 
 const CartWidget = () => {
-  const { itemsCart } = useContext(CartContext);
-  console.log(itemsCart);
-  const handleClick = () => {
-    alert("¡Todavía no funciona!");
-  };
+  const { cartList } = useContext(CartContext);
+  console.log(cartList);
 
   return (
     <div className="cartContainer">
-      <ShoppingCartIcon className="cartIcon" onClick={handleClick} />
-      <span className="cartNumber">{sumQuantities(itemsCart)}</span>
+      <Link to="/cart/">
+        <ShoppingCartIcon className="cartIcon" />
+      </Link>
+      <span className="cartNumber">{sumQuantities(cartList)}</span>
     </div>
   );
 };

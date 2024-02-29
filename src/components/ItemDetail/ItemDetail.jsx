@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 
 const ItemDetail = ({ name, category, stock, img, description, id, price }) => {
-  const { addItems } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   const [productQuantity, setProductQuantity] = useState(0);
 
   const handleOnAdd = (quantity) => {
@@ -16,7 +16,7 @@ const ItemDetail = ({ name, category, stock, img, description, id, price }) => {
       name,
       quantity,
     };
-    addItems(item);
+    addToCart(item);
   };
 
   return (
@@ -36,7 +36,7 @@ const ItemDetail = ({ name, category, stock, img, description, id, price }) => {
           </Link>
         </div>
       ) : (
-        <ItemCount onAdd={handleOnAdd} stock={stock} />
+        <ItemCount onAdd={handleOnAdd} stock={stock} initial={1} />
       )}
     </div>
   );
