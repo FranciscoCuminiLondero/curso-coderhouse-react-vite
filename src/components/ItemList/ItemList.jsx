@@ -3,11 +3,11 @@ import Item from "../Item/Item";
 
 function ItemList({ items }) {
   return (
-    <div>
+    <>
       {items.map((item) => {
         return <Item {...item} />;
       })}
-    </div>
+    </>
   );
 }
 

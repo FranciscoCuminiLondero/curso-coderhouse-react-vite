@@ -12,8 +12,11 @@ const ItemDetail = ({ name, category, stock, img, description, id, price }) => {
   const handleOnAdd = (quantity) => {
     setProductQuantity(quantity);
     const item = {
+      id,
       price,
       name,
+      stock,
+      img,
       quantity,
     };
     addToCart(item);
@@ -21,23 +24,29 @@ const ItemDetail = ({ name, category, stock, img, description, id, price }) => {
 
   return (
     <div className="itemDetail" key={id}>
-      {/* <img src={img} alt={name} /> */}
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <p>{`Disponible: ${stock}`}</p>
-      <p>{category}</p>
-      {productQuantity > 0 ? (
-        <div>
-          <Link to="/">
-            <Button>Seguir comprando</Button>
-          </Link>
-          <Link to="/cart/">
-            <Button>Terminar Compra</Button>
-          </Link>
-        </div>
-      ) : (
-        <ItemCount onAdd={handleOnAdd} stock={stock} initial={1} />
-      )}
+      <div className="itemDetail__img">
+        <img src={img} alt={name} />
+      </div>
+      <div className="itemDetail__info">
+        <p className="info__category">{category}</p>
+        <h3 className="info__title">{name}</h3>
+        <p className="info__price">$ {price}</p>
+        <p className="info__description">{description}</p>
+        <p className="info__stock">{`Cant. disponible: ${stock}`}</p>
+
+        {productQuantity > 0 ? (
+          <div>
+            <Link to="/">
+              <Button>Seguir comprando</Button>
+            </Link>
+            <Link to="/cart/">
+              <Button className="btn btn-checkout">Terminar Compra</Button>
+            </Link>
+          </div>
+        ) : (
+          <ItemCount onAdd={handleOnAdd} stock={stock} initial={0} />
+        )}
+      </div>
     </div>
   );
 };

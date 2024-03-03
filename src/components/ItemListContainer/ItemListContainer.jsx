@@ -1,35 +1,61 @@
 import "./itemListContainer.css";
 import { useEffect, useState } from "react";
-import {
-  getProducts,
-  getProductsByCategory,
-} from "../../serveMock/productMock";
 import { useParams } from "react-router-dom";
 import Spinner from "../commons/Spinner/Spinner";
 import ItemList from "../ItemList/ItemList";
-import { collection, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
-  const { categoryId } = useParams();
+  const { category } = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+
     const db = getFirestore();
-    const itemsCollection = collection(db, "chocolates");
-    getDocs(itemsCollection).then((snapshot) => {
-      const docs = snapshot.docs.map((doc) => doc.data());
-      setItems(docs);
-    });
-  }, []);
+    const itemsCollectionRef = collection(db, "chocolates");
+    let itemsQuery;
+
+    if (category) {
+      itemsQuery = query(itemsCollectionRef, where("category", "==", category));
+    } else {
+      itemsQuery = itemsCollectionRef;
+    }
+
+    getDocs(itemsQuery)
+      .then((querySnapshot) => {
+        const fetchedProducts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setItems(fetchedProducts);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los productos:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [category]);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;
 
   return (
-    <div>
+    <>
       <h2 className="title">{greeting}</h2>
-      <ItemList items={items} />
-    </div>
+      <div className="itemListContainer">
+        <div className="itemList">
+          <ItemList items={items} />
+        </div>
+      </div>
+    </>
   );
 };
 

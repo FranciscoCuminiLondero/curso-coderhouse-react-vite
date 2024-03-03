@@ -4,7 +4,7 @@ import "./spinner.css";
 const Spinner = () => {
   return (
     <div className="containerSpinner">
-      <SyncLoader size={15} color="#169aff" margin={2} speedMultiplier={1} />
+      <SyncLoader size={20} color="#32180f" margin={2} speedMultiplier={1} />
     </div>
   );
 };

@@ -1,17 +1,18 @@
 import "./item.css";
-import Button from "../commons/Button/Button";
 import { Link } from "react-router-dom";
 
-function Item({ name, category, stock, img, description, id }) {
+function Item({ name, stock, img, id }) {
+  const isAvailable = stock > 0;
   return (
     <div className="item" key={id}>
-      <h3>{name}</h3>
-      {<img src={img} alt={name} />}
-      <p>{description}</p>
-      <p>{`Disponible: ${stock}`}</p>
-      <p>{category}</p>
       <Link key={id} to={`/item/${id}`}>
-        <Button>Ver más</Button>
+        {<img src={img} alt={name} />}
+        <h3>{name}</h3>
+        <p>
+          <span className={isAvailable ? "available" : "not-available"}>
+            {isAvailable ? "Disponible" : "No disponible"}
+          </span>
+        </p>
       </Link>
     </div>
   );

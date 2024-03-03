@@ -14,25 +14,26 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProductDetail = async () => {
-      const db = getFirestore();
-      const itemRef = doc(db, "chocolates", id);
+    setIsLoading(true);
 
-      try {
-        const docSnapshot = await getDoc(itemRef);
+    const db = getFirestore();
+    const itemRef = doc(db, "chocolates", id);
+
+    getDoc(itemRef)
+      .then((docSnapshot) => {
         if (docSnapshot.exists()) {
           const itemData = docSnapshot.data();
           setProductDetail(itemData);
         } else {
           console.log("No existe el producto con el id proporcionado");
         }
-      } catch (error) {
-        console.error("Error al obtener los detalles del product:", error);
-      } finally {
+      })
+      .catch((error) => {
+        console.error("Error al obtener los detalles del producto:", error);
+      })
+      .finally(() => {
         setIsLoading(false);
-      }
-    };
-    fetchProductDetail();
+      });
   }, [id]);
 
   if (isLoading) return <Spinner isLoading={isLoading} />;

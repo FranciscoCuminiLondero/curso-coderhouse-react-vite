@@ -10,11 +10,11 @@ const CartWidget = () => {
   console.log(cartList);
 
   return (
-    <div className="cartContainer">
+    <div className="cartWidgetContainer">
       <Link to="/cart/">
-        <ShoppingCartIcon className="cartIcon" />
+        <ShoppingCartIcon className="cartIcon brown" />
       </Link>
-      <span className="cartNumber">{sumQuantities(cartList)}</span>
+      <span className="cartNumber brown">{sumQuantities(cartList)}</span>
     </div>
   );
 };

@@ -8,13 +8,17 @@ function Counter({ initial, onAdd, stock }) {
   return (
     <>
       <div className="counterContainer">
-        <button disabled={value === 0} onClick={substract}>
+        <span
+          className="btn-add-sub"
+          disabled={value === 0}
+          onClick={substract}
+        >
           -
-        </button>
-        <p>{value}</p>
-        <button disabled={value === stock} onClick={add}>
+        </span>
+        <p className="counter">{value}</p>
+        <span className="btn-add-sub" disabled={value === stock} onClick={add}>
           +
-        </button>
+        </span>
       </div>
       <Button disabled={value === 0} handleClick={() => onAdd(value)}>
         Agregar al carrito

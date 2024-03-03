@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.form label {
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.form input {
+  font-size: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #ff6a00;
+  padding: 1rem 1.5rem;
+}
+
+.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit svg {
+  padding-left: 1rem;
+}

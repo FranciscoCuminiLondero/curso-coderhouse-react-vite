@@ -1,0 +1,16 @@
+.itemListContainer {
+  margin: 0 auto;
+  padding: 2rem 10rem;
+}
+
+.itemList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  color: #32180f;
+  text-transform: uppercase;
+}
